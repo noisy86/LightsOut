@@ -11,6 +11,7 @@ export class AppComponent {
 
 
   boolArr = new Array(5);
+  moves: number = 0;
 
   createarr() {
     for (let i = 0; i < 5; i++) {
@@ -23,10 +24,12 @@ export class AppComponent {
       }
     }
     console.log(this.boolArr);
+    this.moves = 0;
     return this.boolArr;
   };
 
 click(cell, lineIndex, cellIndex){
+  this.moves++;
   this.boolArr[lineIndex][cellIndex] = !this.boolArr[lineIndex][cellIndex];
   if(lineIndex-1 >= 0 ){
     this.boolArr[lineIndex-1][cellIndex] = !this.boolArr[lineIndex-1][cellIndex];
@@ -45,16 +48,17 @@ click(cell, lineIndex, cellIndex){
 
   let counter = 0;
   for (let row = 0; row < this.boolArr.length; row++) {
-    for (let column = 0; column < this.boolArr[row].length; column++) {
-      if(this.boolArr[row][column] == false){
-        counter++;
-      }
-
+  for (let column = 0; column < this.boolArr[row].length; column++) {
+    if(this.boolArr[row][column] == false){
+      counter++;
     }
 
   }
+  }
   if(counter == 25){
     alert("You win");
+    this.moves = 0
+
   }
 }
 
